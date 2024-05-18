@@ -1,0 +1,191 @@
+{% extends "index.html" %}
+{% load static %}
+
+<!--head -->
+{% block head %}
+<link rel="stylesheet" href="static/css/updateprofile.css" />
+<style>
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 600px;
+    width: 100%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-page-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .profile-photo-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .profile-photo-container img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .user-content-container ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .user-content-container li {
+    margin-bottom: 20px;
+  }
+
+  .user-content-container label {
+    font-weight: bold;
+  }
+
+  .user-content-container input[type="text"],
+  .user-content-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .profile-save-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  /* Responsive CSS */
+  @media screen and (max-width: 768px) {
+    .container {
+      max-width: 90%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .profile-photo-container img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .user-content-container input[type="text"],
+    .user-content-container textarea {
+      padding: 8px;
+    }
+
+    .profile-save-button {
+      padding: 8px 16px;
+    }
+  }
+</style>
+{% endblock head %}
+
+<!--body -->
+{% block body %}
+<!--alert messgae -->
+{% if messages %}
+<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+  <div>
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+  </div>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+      aria-hidden="true">&times;</span></button>
+</div>
+{% endif %}
+
+<main class="main-container">
+  <form class="container" action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="profile-photo-container profile-photo-form-container">
+      <p class="profile-page-heading">Edit your profile</p>
+      <img src="{{user.profile.profile_img.url}}" alt="user-image" width="" srcset="" />
+      {{form.profile_img}}
+    </div>
+
+    <div class="user-content-container user-profile-form-container">
+      <ul>
+        <li class="name">
+          <label for="user-name">Your Name</label>
+          {{form.name}}
+        </li>
+        <li class="title">
+          <label for="user-title">Your title</label>
+          {{form.title}}
+        </li>
+        <li class="desc">
+          <label for="user-desc">Description</label>
+          {{form.desc}}
+        </li>
+        <li class="phone">
+          <label for="user-phone">Phone</label>
+          {{form.phone}}
+        </li>
+        <li class="address">
+          <label for="user-address">Address</label>
+          {{form.address}}
+        </li>
+        <li class="city">
+          <label for="user-city">City</label>
+          {{form.city}}
+        </li>
+        <li class="state">
+          <label for="user-state">State</label>
+          {{form.state}}
+        </li>
+        <li class="country">
+          <label for="user-country">Country</label>
+          {{form.country}}
+        </li>
+        <li class="pincode">
+          <label for="user-pincode">Pincode</label>
+          {{form.pincode}}
+        </li>
+      </ul>
+      <div class="hidden" style="display: none;">{{form.forget_password_token}}</div>
+      <button class="profile-save-button">Save</button>
+    </div>
+  </form>
+</main>
+
+<script>
+  var id_name = document.getElementById("id_name");
+  var id_title = document.getElementById("id_title");
+  var id_desc = document.getElementById("id_desc");
+
+  var id_phone = document.getElementById("id_phone");
+  var id_address = document.getElementById("id_address");
+  var id_city = document.getElementById("id_city");
+  var id_state = document.getElementById("id_state");
+  var id_country = document.getElementById("id_country");
+  var id_pincode = document.getElementById("id_pincode");
+  var id_desc = document.getElementById("id_desc");
+
+
+
+  id_name.placeholder = "Your Name";
+  id_title.placeholder = "Your Title";
+  id_desc.placeholder = "Description";
+</script>
+{% endblock body %}
+
+<!--Footer Override  -->
+{%block footer%}
+{%endblock footer%}

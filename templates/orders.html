@@ -1,0 +1,92 @@
+{% extends "index.html" %}
+{%load cart%}
+{%load custom_filter%}
+{%load static%}
+
+<!--head-->
+{% block head %}
+<link rel="stylesheet" href="static/css/order.css" />
+{% endblock head %}
+
+<!--body-->
+{% block body %}
+{% if messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div>
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+</div>
+{% endif %}
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow ">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between mb-0">
+                        <h2 class="mb-0"> Your Order </h2>
+                        <a href="{% url 'feedback' %}" class="btn btn-success col-lg-2 float-right"><i
+                                class="fas fa-comments"></i> Feedback</a>
+                    </div>
+                </div>
+
+
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Sno.</th>
+                                <th>Image</th>
+                                <th>Order Data</th>
+                                <th>Tracking Number</th>
+                                <th>Total Price</th>
+                                <th>Status</th>
+                                <th>Action </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in orders %}
+                            <tr>
+
+                                <td>{{forloop.counter}}</td>
+                                {% comment %} <td><img style="height: 80px;" src="{{ orderitem.product.image.url }}" alt=""></td> {% endcomment %}
+                                <td><img style="height: 80px;" src="{{ item.product_image_url }}" alt=""></td>
+                                {% comment %} <td><img style="height: 80px;" src="{{ item.get_product_image_url }}" alt=""></td> {% endcomment %}
+                                <td>{{item.created_at}}</td>
+                                <td>{{item.tracking_no}}</td>
+                                <td>{{item.total_price|currency}}</td>
+                                <!-- <td>{{item.status}}</td> -->
+                                <td>
+                                    {% if item.status == 'Pending' %}
+                                    <span class="badge badge-warning">{{ item.status }}</span>
+                                    {% elif item.status == 'Completed' %}
+                                    <span class="badge badge-success">{{ item.status }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'orderview' item.tracking_no %}" class="btn btn-secondary">View
+                                        Orders</a>
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}
+<!--Footer Override  -->
+{%block footer%}
+{%endblock footer%}
+

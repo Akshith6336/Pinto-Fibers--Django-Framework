@@ -1,0 +1,57 @@
+    .cart-container {
+        max-width: 80%;
+        margin: 10px auto;
+        background-color: #fff;
+        padding: 10px;
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    table {
+        display: table;
+        border-collapse: separate;
+        box-sizing: border-box;
+        text-indent: initial;
+        line-height: normal;
+        font-weight: normal;
+        font-size: medium;
+        font-style: normal;
+        color: -internal-quirk-inherit;
+        text-align: start;
+        border-spacing: 2px;
+        border-color: gray;
+        white-space: normal;
+        font-variant: normal;
+    }
+
+    /* Responsive table styles */
+    @media (max-width: 767px) {
+
+        /* Hide table header on small screens */
+        table thead {
+            display: none;
+        }
+
+        /* Display table rows as blocks for better readability on small screens */
+        table tbody,
+        table tr,
+        table td {
+            display: block;
+        }
+
+        /* Set full width for table cells */
+        table td {
+            width: 100%;
+        }
+
+        /* Add spacing and border for better visualization */
+        table td {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* Add alternate background color to table rows for better readability */
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    }

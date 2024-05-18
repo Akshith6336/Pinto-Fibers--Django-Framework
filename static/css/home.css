@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&family=Reem+Kufi+Ink&display=swap");
+/*-----------------------------------*\
+# HEADER -- SWIPER
+\*-----------------------------------*/
+:root {
+    --main-color: #ef5e47;
+    --title-color: #1d1d1d;
+    --paragraph-color: #797776;
+    --transition: all 0.4s;
+}
+
+
+.title__slide span {
+    color: var(--main-color);
+    font-size: 2.4rem;
+    font-family: "Kaushan Script", cursive;
+}
+
+.title__section span {
+    color: var(--main-color);
+    font-size: 1.2rem;
+    font-family: "Kaushan Script", cursive;
+}
+
+.swiper {
+    width: 100%;
+    height: 66vh;
+}
+
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.swiper-slide:nth-child(1) {
+    background: rgba(249, 243, 235, 255);
+}
+
+.swiper-slide:nth-child(2) {
+    background-color: #e9f0f3;
+}
+
+.title__slide {
+    width: 50%;
+    margin-left: 8rem;
+}
+
+.title__slide p {
+    width: 80%;
+}
+
+.picture__slide-1 {
+    width: 60%;
+    height: 100%;
+    background: url("../img/bg-slider--1.png") no-repeat;
+    background-size: cover;
+    margin-right: -18rem;
+    display: flex;
+    align-items: center;
+}
+
+.picture__slide-2 {
+    margin-top: -12rem;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    background: url("../img/particle-3.png") no-repeat;
+}
+
+.picture__slide-2 img {
+    width: 30%;
+}
+
+.picture__slide-1 img {
+    width: 30%;
+}
+
+.picture__slide-1 .particle-1 {
+    width: 14%;
+}
+
+.picture__slide-1 .particle-2 {
+    width: 22%;
+}
+
+.btn__slide {
+    background-color: transparent;
+    padding: 16px 30px;
+    border: 1px solid #797776;
+    color: #797776;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-top: 2rem;
+}
+
+.btn__slide:hover {
+    color: #000;
+}
+
+h1 {
+    font-size: 3.2rem;
+    font-family: "Reem Kufi Ink", sans-serif;
+    letter-spacing: 10px;
+}
+
+h3,
+h4 {
+    font-family: "Reem Kufi Ink", sans-serif;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+}
+
+h2 {
+    font-family: "Reem Kufi Ink", sans-serif;
+    letter-spacing: 4px;
+    font-size: 1.8rem;
+    margin-top: 1rem;
+}
+
+p {
+    line-height: 1.7;
+    font-size: 1.1rem;
+    color: var(--paragraph-color);
+}
+
+.title__section span {
+    color: var(--main-color);
+    font-size: 1.2rem;
+    font-family: "Kaushan Script", cursive;
+}
+
+.contain {
+    width: 90%;
+    margin: 0 auto;
+}

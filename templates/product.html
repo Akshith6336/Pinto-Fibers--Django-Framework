@@ -1,0 +1,102 @@
+{% extends "index.html" %}
+{% load cart %}
+{% load custom_filter %}
+
+<!-- head -->
+{% block head %}
+<style>
+    /* Responsive Styles */
+    @media (max-width: 767px) {
+        .card-body {
+            padding: 10px;
+        }
+
+        .card-text {
+            font-size: 14px;
+        }
+
+        .list-group-item {
+            padding: 8px;
+        }
+
+        .btn {
+            font-size: 14px;
+            padding: 5px 10px;
+        }
+    }
+</style>
+{% endblock head %}
+
+<!-- body -->
+{% block body %}
+<div class="container-fluid mt-3">
+    <div class="row">
+
+        <!-- Categories -->
+        <div class="col-lg-3 mx-auto mt-4">
+            <a href="product" class="list-group-item list-group-item-action">All</a>
+            {% for category in categories %}
+            <div class="list-group">
+                <a href="product?category={{ category.id }}"
+                    class="list-group-item list-group-item-action">{{category.name}}</a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Products -->
+        <div class="col-lg-9 mx-auto mt-4">
+            <div class="row mx-auto">
+                {% for product in products %}
+                <div class="card mx-auto mb-3" id="{{ product.id }}" style="width: 15rem; height: auto;">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{ product.name }}</h5>
+                        <p class="card-text text-center">{{ product.price|currency }}</p>
+                        <p class="card-text text-center">{{ product.description }}</p>
+                    </div>
+                    <div class="card-footer p-0 m-0">
+                        {% if request.user.is_authenticated %}
+                        {% with request.user.cart_set.all as cart_items %}
+                        {% with product|is_in_cart:cart_items as in_cart %}
+                        {% if in_cart %}
+                        <div class="row no-gutters">
+                            <form action="{% url 'product' %}" method="POST" class="col-2">
+                                {% csrf_token %}
+                                <input hidden type="text" name="product" value="{{ product.id }}">
+                                <input hidden type="text" name="remove" value="True">
+                                <input type="submit" value=" - " class="btn btn-light btn-block">
+                            </form>
+                            <div class="text-center col">{{ product|cart_quantity:cart_items }}</div>
+                            <form action="{% url 'product' %}" method="POST" class="col-2">
+                                {% csrf_token %}
+                                <input hidden type="text" name="product" value="{{ product.id }}">
+                                <input type="submit" value=" + " class="btn btn-light btn-block">
+                            </form>
+                        </div>
+                        {% else %}
+                        <form action="{% url 'product' %}" method="POST">
+                            {% csrf_token %}
+                            <input hidden type="text" name="product" value="{{ product.id }}">
+                            <input type="submit" class="btn btn-light form-control" value="Add to Cart">
+                        </form>
+                        {% endif %}
+                        {% endwith %}
+                        {% endwith %}
+                        {% else %}
+                        <form action="{% url 'login' %}" method="GET">
+                            <input type="submit" class="btn btn-light form-control" value="Add to Cart">
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock body %}
+
+<!--Footer Override  -->
+{%block footer%}
+{%endblock footer%}

@@ -1,0 +1,127 @@
+body {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("../images/loginbg.jpg") no-repeat;
+    background-size: cover;
+}
+
+/* Main Container css */
+.signup-container {
+    margin: 10px 675px 100px 675px;
+    width: 30%;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    color: #fff;
+    padding: 30px 40px;
+    margin: 4% auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container label {
+    font-size: medium;
+    width: 100%;
+    margin: .5em auto .3em 0;
+}
+
+.container input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    border: solid #707070 1px;
+    padding: 10px 45px 10px 20px;
+}
+
+
+
+.user {
+    margin-bottom: 1em;
+}
+
+.password {
+    margin-bottom: 1em;
+}
+
+
+.signup-button {
+    width: 100%;
+    height: 45px;
+    margin-top: 25px;
+    padding: .5em;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.container p {
+    font-size: 15px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.container p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.container p a:hover {
+    text-decoration: underline;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 1400px) {
+    .signup-container {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .signup-container {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .signup-container {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .signup-container {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .signup-container {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .signup-container {
+        width: 100%;
+    }
+}

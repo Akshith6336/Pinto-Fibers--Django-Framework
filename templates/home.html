@@ -1,0 +1,126 @@
+{%extends "index.html"%}
+{%load static%}
+
+<!--head -->
+{% block head %}
+
+<link rel="stylesheet" href="static/css/home.css">
+<link href="https://cdn.jsdelivr.net/npm/swiper@11.0.3/swiper-bundle.min.css" rel="stylesheet">
+
+{% endblock head %}
+<!--body -->
+{% block body%}
+{% load cart %}
+{% load custom_filter %}
+
+<!-- carousel -->
+    <!-- ===== SWIPER  ===== -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <!-- --- SWIPER-SLIDE 1 --- -->
+            <div data-hash="slide1" class="swiper-slide">
+                <div class="title__slide">
+                    <span>Authentie</span>
+                    <h1>MADE WITH LOVE</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur impedit quisquam.</p>
+                    {% comment %} <a href="#"><button class="btn__slide">Read More</button></a> {% endcomment %}
+                </div>
+                <!-- PICTURE SLIDE -->
+                <div class="picture__slide-1">
+                    <img class="particle-1" src="{%static 'images/particle-1.png' %}" alt="">
+                    <img src="{%static 'images/hero-slider--1.png' %}" alt="">
+                    <img class="particle-2" src="{%static 'images/particle-2.png' %}" alt="">
+                </div>
+            </div>
+            <!-- --- SWIPER-SLIDE 2 --- -->
+            <div data-hash="slide2" class="swiper-slide">
+                <div class="title__slide">
+                    <span>Tailored</span>
+                    <h1>CLASSIC INTERIORS</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur impedit quisquam.</p>
+                    {% comment %} <a href="#"><button class="btn__slide">Read More</button></a> {% endcomment %}
+                </div>
+                <!-- PICTURE SLIDE -->
+                <div class="picture__slide-2">
+                    <img class="particle-1" src="{%static 'images/hero-slider--2.png' %}" alt="">
+                    <img src="{%static 'images/hero-slider--2(2).png' %}" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- --- BUTONS SWIPER --- -->
+        <div class="swiper-button-next" style="color: #000;"></div>
+        <div class="swiper-button-prev" style="color: #000;"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <!-- ===== SWIPER END  ===== -->
+
+<!-- Products -->
+<div class="col-lg-9 mx-auto mt-4">
+    <div class="row mx-auto">
+        {% for product in products %}
+        <div class="card mx-auto mb-3" id="{{ product.id }}" style="width: 15rem; height: auto;">
+        <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title text-center">{{ product.name }}</h5>
+            <p class="card-text text-center">{{ product.price|currency }}</p>
+            <p class="card-text text-center">{{ product.description }}</p>
+        </div>
+        <div class="card-footer p-0 m-0">
+            {% if request.user.is_authenticated %}
+            {% with request.user.cart_set.all as cart_items %}
+            {% with product|is_in_cart:cart_items as in_cart %}
+            {% if in_cart %}
+            <div class="row no-gutters">
+                <form action="{% url 'product' %}" method="POST" class="col-2">
+                {% csrf_token %}
+                    <input hidden type="text" name="product" value="{{ product.id }}">
+                    <input hidden type="text" name="remove" value="True">
+                    <input type="submit" value=" - " class="btn btn-light btn-block">
+                </form>
+            <div class="text-center col">{{ product|cart_quantity:cart_items }}</div>
+                <form action="{% url 'product' %}" method="POST" class="col-2">
+                {% csrf_token %}
+                    <input hidden type="text" name="product" value="{{ product.id }}">
+                    <input type="submit" value=" + " class="btn btn-light btn-block">
+                </form>
+            </div>
+            {% else %}
+            <form action="{% url 'product' %}" method="POST">
+                {% csrf_token %}
+                    <input hidden type="text" name="product" value="{{ product.id }}">
+                    <input type="submit" class="btn btn-light form-control" value="Add to Cart">
+            </form>
+            {% endif %}
+            {% endwith %}
+            {% endwith %}
+            {% else %}
+            <form action="{% url 'login' %}" method="GET">
+                <input type="submit" class="btn btn-light form-control" value="Add to Cart">
+            </form>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            hashNavigation: {
+                watchState: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+
+{% endblock body%}

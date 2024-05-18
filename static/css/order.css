@@ -1,0 +1,49 @@
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    line-height: normal;
+    font-weight: normal;
+    font-size: medium;
+    font-style: normal;
+    color: -internal-quirk-inherit;
+    text-align: start;
+    border-spacing: 2px;
+    white-space: normal;
+    font-variant: normal;
+}
+
+/* Responsive table styles */
+@media (max-width: 992px) {
+    table thead {
+        display: none;
+    }
+
+    table tbody,
+    table tr,
+    table td {
+        display: block;
+    }
+
+    table td {
+        width: 100%;
+    }
+
+    table {
+        padding: 8px;
+        border: 1px solid #dbdbdb;
+    }
+
+    table tr {
+        border-bottom: 1px solid #dbdbdb;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #fffbfb;
+    }
+
+    table tr:nth-child(odd) {
+        background-color: #efefef;
+    }
+}

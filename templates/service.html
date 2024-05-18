@@ -1,0 +1,42 @@
+{% comment %} {% extends "index.html" %}
+{% load static %}
+
+{% block head %}
+<!--head-->
+<link rel="stylesheet" href="{% static 'css/services.css' %}">
+<style>
+    {% for service_data in services %}
+    #service-{{ service_data.service_name_hash }} {
+        background-color: {{ service_data.background_color }};
+    }
+    {% endfor %}
+</style>
+
+{% endblock head %}
+
+<!--body-->
+{% block body %}
+
+<div class="about-header">
+    <h2 class="text-center mt-4"> Our Services </h2>
+ </div><hr>
+
+<div class="service-container">
+    <div class="row">
+        {% for service_data in services %}
+        <div class="col">
+            <div class="servicecard">
+                <div class="servicecard-body" id="service-{{ service_data.service_name_hash }}">
+                    <h1 class="servicecard-title text-center"><b>{{ service_data.service }}</b></h1>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}
+
+
+<!--Footer Override  -->
+{%block footer%}
+{%endblock footer%} {% endcomment %}

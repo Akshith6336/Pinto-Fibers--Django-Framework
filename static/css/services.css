@@ -1,0 +1,47 @@
+    /* .row{
+        padding: 5%;
+    }
+    
+    .service-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 5% 20% 10% 20%;
+    }
+
+    .col {
+        flex: 0 0 calc(50% - 10px);
+        box-sizing: border-box;
+        margin: 10px 5px;
+    }
+
+    .servicecard {
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        border-radius: 5px;
+        height: auto;
+        padding: 1%;
+        border: solid rgb(189, 187, 187);
+
+    }
+
+    @media (max-width: 800px) {
+        .col {
+            flex: 0 0 calc(100% - 20px);
+        }
+
+        .service-container {
+            margin: 10px 10px;
+            width: 100%;
+        }
+    }
+
+    .servicecard-body {
+        background-color: rgb(189, 187, 187);
+        padding: 15%;
+        border-radius: 5px;
+        margin: 5px;
+    }
+
+    .servicecard-title {
+        font-size: larger;
+    } */

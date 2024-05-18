@@ -1,0 +1,49 @@
+{% extends "index.html" %}
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="static/css/about.css">
+
+{% endblock head %}
+
+{% block body %}
+<div class="heading">
+    <h1 class="text-center mt-4"> About Us </h1>
+</div>
+<div class="responsive-container-block bigContainer">
+    <div class="responsive-container-block Container">
+        <img src="" >
+        <img class="mainImg" src="{% static 'images/dediAbout.jpg' %}">
+        <div class="allText aboveText">
+            <p class="text-blk subHeadingText">
+                Our Dedicated Team
+            </p>
+            <p class="text-blk description">
+                Pinto Fibers, a premier furniture store, thrives on the dedication of its passionate team. From skilled craftsmen meticulously shaping each piece to the 
+                attentive sales staff guiding customers through their choices, our team is the heartbeat of our establishment. United by a shared commitment to quality and customer satisfaction, every member works tirelessly to ensure that each 
+                furniture item reflects our dedication to excellence. Whether it's designing innovative pieces or providing exceptional customer service, the dedication of our team shines through, making Pinto Fibers not just a store,
+                but a destination where craftsmanship and commitment converge to create unforgettable experiences for our valued patrons.
+            </p>
+        </div>
+    </div>
+    
+    <div class="responsive-container-block Container bottomContainer">
+        <img class="mainImg" src="{% static 'images/trustedAbout.jpeg' %}">
+        <div class="allText bottomText">
+            <p class="text-blk subHeadingText">
+                Your Trusted Partner
+            </p>
+            <p class="text-blk description">
+                At Pinto Fibers, we take pride in being more than just a furniture store, we're your trusted partner in transforming 
+                spaces into havens of comfort and style. With a legacy of reliability and excellence, we've earned the trust of our customers
+                through our unwavering commitment to quality craftsmanship and exceptional service. 
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+
+<!--Footer Override  -->
+{% block footer %}
+<footer></footer>
+{% endblock footer%}

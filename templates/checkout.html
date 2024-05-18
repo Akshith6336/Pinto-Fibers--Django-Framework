@@ -1,0 +1,144 @@
+{% extends "index.html" %}
+{% load static %}
+{% load custom_filter %}
+{% load cart %}
+
+<!-- head -->
+{% block head %}
+{% endblock head %}
+
+<!-- checkout -->
+{% block body %}
+
+<!-- checkout -->
+<div class="container my-4">
+    <form action="{% url 'placeorder' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-7 shadow ">
+                <div class="card">
+                    <div class="card-body">
+                        <h6> Cart Details</h6>
+                        <hr>
+                        <div class="row checkoutform">
+                            <!--First name-->
+                            <div class="col-md-6 mt-2">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" value="{{ request.user.first_name }}" name="fname" placeholder="Enter first name" >
+                            </div>
+
+                            <!--Last name-->
+                            <div class="col-md-6 mt-2">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" value="{{ request.user.last_name }}" name="lname"  placeholder="Enter Last name" >
+                            </div>
+
+                            <!--email-->
+                            <div class="col-md-6 mt-2">
+                                <label>Email</label>
+                                <input type="text" class="form-control" value="{{ request.user.email }}" name="email"  placeholder="Enter email" >
+                            </div>
+
+                            <!--phone-->
+                            <div class="col-md-6 mt-2">
+                                <label>Phone</label>
+                                <input type="text" class="form-control" value="{{ userprofile.phone }}" name="phone"  placeholder="Enter phone number" >
+                            </div>
+
+                            <!--address-->
+                            <div class="col-md-6 mt-2">
+                                <label>Address</label>
+                                <textarea class="form-control" name="address"  placeholder="Enter Address" >{{ userprofile.address }}</textarea>
+                            </div>
+
+                            <!--city-->
+                            <div class="col-md-6 mt-2">
+                                <label>City</label>
+                                <input type="text" class="form-control" value="{{ userprofile.city }}" name="city"  placeholder="Enter city" >
+                            </div>
+
+                            <!--state-->
+                            <div class="col-md-6 mt-2">
+                                <label>State</label>
+                                <input type="text" class="form-control" value="{{ userprofile.state }}" name="state"  placeholder="Enter state" >
+                            </div>
+
+                            <!--country-->
+                            <div class="col-md-6 mt-2">
+                                <label>Country</label>
+                                <input type="text" class="form-control" value="{{ userprofile.country }}" name="country"  placeholder="Enter Country" >
+                            </div>
+                            <!--pincode-->
+                            <div class="col-md-6 mt-2">
+                                <label>Pin Code</label>
+                                <input type="text" class="form-control" value="{{ userprofile.pincode }}" name="pincode"  placeholder="Enter pincode" >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5 shadow">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="display text-center m-3"> Order Summary</h6><hr>
+                        {% if products %}
+                        <table class="table table-stripeds table-bordereds" >
+                            <thead>
+                                <tr>
+                                    <th>Products</th>
+                                    <th>Quantity</th>
+                                    <th>Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in products %}
+                                <tr>
+                                    <td><img src="{{item.image.url}}" height="50px" width="50px" class="me-2" alt="">&nbsp;&nbsp;{{ item.name }}</td>
+                                    <td>{{ item|cart_quantity:cart_items }}</td>
+                                    <td>{{ item|total_price:cart_items|currency }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        
+                        </table>
+                        <h6 class="d-flex justify-content-between align-items-center fw-bold">
+                            <span>Grand Total</span>
+                            <span id="totalPrice">{{ products|total_cart_price:cart_items|currency }}</span>
+                            
+                        </h6>
+                        <input type="hidden" value="COD" name="payment_mode">
+                        <h6 class="m1-3">
+                            <button type="submit" class="btn btn-success w-100"> COD | Place order </button>
+                        </h6>
+                        <h6 class="m1-3">
+                            <button type="submit" class="btn btn-primary paywithRazorpay w-100">Pay with Razorpay  </button>
+                        </h6>
+                        {% else %}
+                        <h4 class="text-center">Your cart is empty</h4>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock body %}
+
+<!--Footer Override  -->
+{% block footer %}
+{% endblock footer %}
+
+
+{% block scripts%}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<!--Razorpay checkout -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="{% static 'js/checkout.js' %}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+{% endblock scripts%}

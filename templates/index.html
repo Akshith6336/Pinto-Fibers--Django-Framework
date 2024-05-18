@@ -1,0 +1,110 @@
+{% load static %}
+<html>
+<head>
+    <title>PINTO FIBERS</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!--Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11.0.3/swiper-bundle.min.css" rel="stylesheet">
+
+    
+    <!--custom css-->
+    <link rel="stylesheet" href="{% static '/css/index.css' %}" />
+</head>
+
+{% block head %}
+{% endblock head %}
+
+<!-- ===== NAV  ===== -->
+    <nav id="home">
+        <div class="navigation">
+            <!-- ---
+            # LOGO
+            --- -->
+            <img src="{% static '../static/images/2.png' %}" alt="" class="logo">
+            <!-- ---
+            # MENU
+            --- -->
+            <div class="menu">
+                <i class="fa-sharp fa-solid fa-xmark btn__close"></i>
+                <a href="/">HOME</a>
+                <a href="/about">ABOUT</a>
+                {% comment %} <a href="/service">SERVICES</a> {% endcomment %}
+                <a href="/product">PRODUCT</a>
+                <a href="/contact">CONTACT</a>
+                <a href="/cart"><i class="fa-solid fa-cart-shopping"></i> CART <span class="badge small-badge-info" style="background-color: #189b9b;color: aliceblue; padding: 3px 4px; border-radius: 40%;">{{ cart_count }}</span></a>
+                {% if user.is_authenticated %}
+                <a href="/orders">ORDERS<span class="sr-only">(current)</span></a></li>
+                <a href="/feedback">FEEDBACK</a>
+                <a href="{% url 'logout' %}">LOGOUT</a>
+                <a class="profile-icon-link-container" href="{% url 'profile' %}">
+                <img src="{{user.profile.profile_img.url }}" alt="profile-icon" width="40px" style="border-radius: 50%; object-fit: cover;">
+                </a>
+                {% else %}
+                <a href="login"><i class="fa-regular fa-user"></i> LOGIN</a>
+                {% endif %}
+            </div>
+            <button class="hamburguer">
+                <i class="fa-sharp fa-solid fa-bars btn__menu"></i>
+            </button>
+        </div>
+    </nav>
+
+
+<!-- Body -->
+{%block body%}
+{%endblock body%}
+
+<!-- Footer -->
+{%block footer %}
+<footer class="footer ">
+    <div class="container">
+        <div class="row">
+            <!-- Contact Section -->
+            <div class="col-md-6">
+                <h3>Contact Us</h3>
+                <p>
+                    Address: Shed No -323C -1 , Industrial Area Baikampady Mangalore. <br>
+                    Phone: 9449640290 <br>
+                    Email: pintofibers@gmail.com
+                </p>
+            </div>
+
+            <!-- Company Description Section -->
+            <div class="col-md-6">
+                <h3>About Us </h3>
+                <p>
+                    At Pinto Fibers, we're more than just a
+                    furniture store - we're a team of passionate
+                    artisans
+                    and craftsmen on a mission to turn your home into a
+                    masterpiece of design and comfort. Our devotion
+                    to the art of woodworking is evident in every piece
+                    we create.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+{%endblock footer %}
+
+<!-- JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>
+
+
+{% block scripts%}
+{% endblock scripts%}
+</body>
+</html>
